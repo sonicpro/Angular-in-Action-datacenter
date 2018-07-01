@@ -1,33 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-metric',
   templateUrl: './metric.component.html',
-  styleUrls: ['./metric.component.css']
+  styleUrls: ['./metric.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MetricComponent {
-    private valueField: number = 0;
-    private maxField: number = 100;
-  
-    @Input("used")
-    public set value(value: number){
-      if (isNaN(value)) {
-        value = 0;
-      }
-      this.valueField = value;
-    }
-    public get value(): number { return this.valueField; }
+export class MetricComponent implements OnChanges {
+    @Input("used") public value: number = 0;
+    @Input("available") public max: number = 100;
 
-    @Input("available")
-    public set max(max: number){
-      if (isNaN(max)) {
-        max = 100;
+    ngOnChanges(changes) {
+      if (changes.value && isNaN(changes.value.currentValue)) {
+        this.value = 0;
       }
-      this.maxField = max;
+      if (changes.max && isNaN(changes.max.currentValue)) {
+        this.max = 100;
+      }
     }
-    public get max(): number { return this.maxField; }
 
-    // This member now protected from invalid inputs by means of accessors.
     isDanger() {
       return this.value / this.max > 0.7;
     }
