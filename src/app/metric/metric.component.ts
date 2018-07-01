@@ -23,7 +23,7 @@ export class MetricComponent {
     @Input("available")
     public set max(max: number){
       if (isNaN(max)) {
-        max = 0;
+        max = 100;
       }
       this.maxField = max;
     }
