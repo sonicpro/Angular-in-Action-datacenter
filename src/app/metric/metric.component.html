@@ -3,11 +3,13 @@
 <div class="card card-block">
   <div class="card-body">
     <nav class="navbar navbar-dark bg-primary mb-1" [ngClass]="{'bg-danger': isDanger(), 'bg-success': !isDanger()}">
-      <h1 class="navbar-brand mb-0">{{title}}</h1>
+      <!-- Named "insertion point".-->
+      <h1 class="navbar-brand mb-0"><ng-content select="metric-title"></ng-content></h1>
     </nav>
     <h4 class="card-title">{{value}}/{{max}} ({{value / max | percent:"1.0-2"}})</h4>
     <p class="card-text">
-      {{description}}
+        <!-- Another named "insertion point".-->
+        <ng-content select="metric-description"></ng-content>
     </p>
     <!-- ng-bootstrap component usage-->
     <ngb-progressbar [value]="value" [max]="max" [type]="isDanger() ? 'danger' : 'success'"></ngb-progressbar>

@@ -19,8 +19,8 @@ interface Node {
 export class DashboardComponent implements OnInit, OnDestroy {
   public cpu: Metric;
   public mem: Metric;
-  cluster1: Node[];
-  cluster2: Node[];
+  public cluster1: Node[];
+  public cluster2: Node[];
   interval: any; // JavaScript setInterval() returned value.
   
   ngOnInit(): void {

@@ -9,8 +9,6 @@ export class MetricComponent {
     private valueField: number = 0;
     private maxField: number = 100;
   
-    @Input() public title: string = "";
-    @Input() public description: string = "";
     @Input("used")
     public set value(value: number){
       if (isNaN(value)) {
