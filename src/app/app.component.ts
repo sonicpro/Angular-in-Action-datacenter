@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+// Causes coupling, jotted away and replaced by the local "#dashboard" variable in the template.
+// import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  // @ViewChild(DashboardComponent) private dashboard: DashboardComponent;
+
+  // public refresh() {
+  //   this.dashboard.generateData();
+  // }
 }
